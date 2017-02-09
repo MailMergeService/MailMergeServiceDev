@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services.Common.Authentication", "Authentication\Services.Common.Authentication.csproj", "{F156AB74-AA01-4807-BC33-7F420C55FADB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services.Common", "Common\Services.Common.csproj", "{361FA0CA-F68C-40D7-9EAD-90C8A7B4476D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services.EmailTemplateWebApi", "EmailTemplateWebApi\Services.EmailTemplateWebApi.csproj", "{1B8BA986-CC1E-4915-A77B-2182C507CA53}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services.Common.ServiceConsumer", "ServiceConsumer\Services.Common.ServiceConsumer.csproj", "{F66CB94C-D1EE-49D8-AD33-D95BE4939154}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F156AB74-AA01-4807-BC33-7F420C55FADB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F156AB74-AA01-4807-BC33-7F420C55FADB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F156AB74-AA01-4807-BC33-7F420C55FADB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F156AB74-AA01-4807-BC33-7F420C55FADB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{361FA0CA-F68C-40D7-9EAD-90C8A7B4476D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{361FA0CA-F68C-40D7-9EAD-90C8A7B4476D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{361FA0CA-F68C-40D7-9EAD-90C8A7B4476D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{361FA0CA-F68C-40D7-9EAD-90C8A7B4476D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B8BA986-CC1E-4915-A77B-2182C507CA53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B8BA986-CC1E-4915-A77B-2182C507CA53}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B8BA986-CC1E-4915-A77B-2182C507CA53}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B8BA986-CC1E-4915-A77B-2182C507CA53}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F66CB94C-D1EE-49D8-AD33-D95BE4939154}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F66CB94C-D1EE-49D8-AD33-D95BE4939154}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F66CB94C-D1EE-49D8-AD33-D95BE4939154}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F66CB94C-D1EE-49D8-AD33-D95BE4939154}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
