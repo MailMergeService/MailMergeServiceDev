@@ -1,8 +1,8 @@
-﻿using XServices.Common.Models;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using XServices.Common.Models;
 
-namespace XServices.Common.Contracts.Services
+namespace XServices.Common
 {
     public interface IEmailTemplateService
     {

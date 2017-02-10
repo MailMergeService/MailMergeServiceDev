@@ -7,14 +7,14 @@ namespace XServices.Common.Models
     [Serializable]
     public class ServiceStandardResponse<T>
     {
-        public ServiceStandardResponse(T response,HttpStatusCode statusCode= HttpStatusCode.OK)
+        public ServiceStandardResponse(T response, HttpStatusCode statusCode = HttpStatusCode.OK)
         {
             Response = response;
             HttpStatusCode = statusCode;
         }
+
         public ServiceStandardResponse()
         {
-
         }
 
         public string Url { get; set; }

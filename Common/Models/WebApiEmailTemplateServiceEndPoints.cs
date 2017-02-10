@@ -19,6 +19,5 @@ namespace XServices.Common.Models
         public string GetTemplate { set; get; }
 
         public string GetAllTemplates { set; get; }
-
     }
 }

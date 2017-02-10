@@ -9,7 +9,7 @@ using System.Text;
 using System.Web.Http;
 using System.Web.Http.Controllers;
 
-namespace XServices.Common.Authentication.Attributes
+namespace XServices.Common.Authentication
 {
     //https://tools.ietf.org/html/draft-ietf-oauth-json-web-token-32
     public class JWTAuthorizeHelper
@@ -69,7 +69,7 @@ namespace XServices.Common.Authentication.Attributes
 
         public bool IsValidClaim(string tokenString, string requestedClaim, Func<string, JWTUser> getTokenKeyByTokenId, Action<Exception> onException = null)
         {
-            if (getTokenKeyByTokenId == null) throw new ArgumentNullException("getTokenKeyByTokenId");
+            if (getTokenKeyByTokenId == null) throw new ArgumentNullException(nameof(getTokenKeyByTokenId));
 
             var tokenData = ExtractTokenAndIdFromTokenString(tokenString);
             if (tokenData == null) return false;
@@ -99,9 +99,7 @@ namespace XServices.Common.Authentication.Attributes
                 var requestTokenClaimMatchesMethodToBeExecuted = (string)claims[tokenId] == requestedClaim;
                 var requestTokenClaimExistsInThesystem = user.Claims.Contains(requestedClaim);
 
-                var isValidClaim = requestTokenIdMatchesItsClaims &&
-                    requestTokenClaimMatchesMethodToBeExecuted &&
-                                   requestTokenClaimExistsInThesystem;
+                var isValidClaim = requestTokenIdMatchesItsClaims && requestTokenClaimMatchesMethodToBeExecuted && requestTokenClaimExistsInThesystem;
 
                 return isValidClaim;
             }

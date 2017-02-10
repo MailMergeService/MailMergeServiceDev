@@ -65,7 +65,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Extensions\NFluentExtensions.cs" />
     <Compile Include="Models\EmailTemplateInformation.cs" />
     <Compile Include="Models\EmailMergeModelData.cs" />
     <Compile Include="Models\EmailMergeVar.cs" />
@@ -74,27 +73,25 @@
     <Compile Include="Models\ServiceStandardError.cs" />
     <Compile Include="Models\TemplateEmailSenderInformation.cs" />
     <Compile Include="Models\EmailTemplateServiceResult.cs" />
-    <Compile Include="Contracts\Services\IEmailTemplateService.cs" />
+    <Compile Include="IEmailTemplateService.cs" />
     <Compile Include="Models\HttpSendEmailCommand.cs" />
     <Compile Include="Models\HttpTemplateUpdateCommand.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ServiceLocator.cs" />
-    <Compile Include="Services\WebApiEmailTemplateService.cs" />
-    <Compile Include="Factories\WebApiEmailTemplateServiceEndPointsFactory.cs" />
+    <Compile Include="RESTEmailTemplateService.cs" />
+    <Compile Include="RESTEmailTemplateServiceEndPointsFactory.cs" />
     <Compile Include="Models\WebApiEmailTemplateServiceEndPoints.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ServiceConsumer\Services.Common.ServiceConsumer.csproj">
-      <Project>{F66CB94C-D1EE-49D8-AD33-D95BE4939154}</Project>
-      <Name>XServices.Common.ServiceConsumer</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Authentication\Services.Common.Authentication.csproj">
+      <Project>{F156AB74-AA01-4807-BC33-7F420C55FADB}</Project>
+      <Name>Services.Common.Authentication</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

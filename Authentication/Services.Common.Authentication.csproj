@@ -62,10 +62,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Attributes\ServiceWebApiAuthorizeAttribute.cs" />
+    <Compile Include="ExternalServiceCaller.cs" />
+    <Compile Include="ServiceWebApiAuthorizeAttribute.cs" />
     <Compile Include="JWTAuthorizeHelper.cs" />
-    <Compile Include="TokenRepository.cs" />
-    <Compile Include="Models\JWTUser.cs" />
+    <Compile Include="TokenFactory.cs" />
+    <Compile Include="JWTUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

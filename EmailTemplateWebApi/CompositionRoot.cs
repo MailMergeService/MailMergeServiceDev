@@ -1,6 +1,5 @@
 ﻿using LightInject;
-using XServices.Common.Contracts.Services;
-
+using XServices.Common;
 
 namespace XServices.EmailTemplateWebApi
 {
@@ -8,7 +7,7 @@ namespace XServices.EmailTemplateWebApi
     {
         void ICompositionRoot.Compose(IServiceRegistry serviceRegistry)
         {
-            serviceRegistry.Register<IEmailTemplateService,EmailTemplateService>();
+            serviceRegistry.Register<IEmailTemplateService, EmailTemplateService>();
         }
     }
 }

@@ -2,10 +2,8 @@ using System;
 using System.Linq;
 using System.Web.Http;
 using System.Web.Http.Controllers;
-using XServices.Common.Authentication;
-using XServices.Common.Authentication.Attributes;
 
-namespace OCCServices.Common.Authentication.Attributes
+namespace XServices.Common.Authentication
 {
     public class ServiceWebApiAuthorizeAttribute : AuthorizeAttribute
     {

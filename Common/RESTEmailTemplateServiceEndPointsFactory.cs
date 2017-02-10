@@ -1,12 +1,9 @@
 using XServices.Common.Models;
-using System;
 
-namespace XServices.Common.Factories
+namespace XServices.Common
 {
-    public class WebApiEmailTemplateServiceEndPointsFactory
+    public class RESTEmailTemplateServiceEndPointsFactory
     {
-       
-
         public WebApiEmailTemplateServiceEndPoints GetEndPoints()
         {
             return new WebApiEmailTemplateServiceEndPoints()

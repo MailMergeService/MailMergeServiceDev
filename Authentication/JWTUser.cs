@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace XServices.Common.Authentication.Attributes
+namespace XServices.Common.Authentication
 {
     public class JWTUser
     {
