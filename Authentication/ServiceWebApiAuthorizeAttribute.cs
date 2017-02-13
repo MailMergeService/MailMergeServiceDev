@@ -22,7 +22,7 @@ namespace XServices.Common.Authentication
             {
                 var tokenString = Convert.ToString(actionContext.Request.Headers.GetValues("Authorization").FirstOrDefault());
 
-                if (_occjwtAuthorizeHelper.IsValidClaim(tokenString, Roles, TokenFactory.GetUserDetailsByTokenId))
+                if (TokenFactory.IsValidClaim(tokenString, Roles, TokenFactory.GetUserDetailsByTokenId))
                 {
                     return;
                 }

@@ -1,0 +1,147 @@
+﻿<!doctype html>
+
+<html lang="en">
+<head>
+</head>
+
+<body>
+
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/hmac-sha256.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/components/enc-base64.js"></script>
+    <script>
+        var SecurityManager = {
+            salt: 'rz8LuOtFBXphj9WQfvFh', // Generated at https://www.random.org/strings
+            username: localStorage['SecurityManager.username'],
+            key: localStorage['SecurityManager.key'],
+            ip: null,
+            generate: function (username, password) {
+                if (username && password) {
+                    // If the user is providing credentials, then create a new key.
+                    SecurityManager.logout();
+                }
+                // Set the username.
+                SecurityManager.username = SecurityManager.username || username;
+                // Set the key to a hash of the user's password + salt.
+                SecurityManager.key = SecurityManager.key || CryptoJS.enc.Base64.stringify(CryptoJS.HmacSHA256([password, SecurityManager.salt].join(':'), SecurityManager.salt));
+                // Set the client IP address.
+                //SecurityManager.ip = SecurityManager.ip || SecurityManager.getIp();
+                // Persist key pieces.
+                if (SecurityManager.username) {
+                    localStorage['SecurityManager.username'] = SecurityManager.username;
+                    localStorage['SecurityManager.key'] = SecurityManager.key;
+                }
+                // Get the (C# compatible) ticks to use as a timestamp. http://stackoverflow.com/a/7968483/2596404
+                var ticks = ((new Date().getTime() * 10000) + 621355968000000000);
+                // Construct the hash body by concatenating the username, ip, and userAgent.
+                var message = [SecurityManager.username, /*SecurityManager.ip, navigator.userAgent.replace(/ \.NET.+;/, ''), ticks*/].join('.');
+                // Hash the body, using the key.
+                var hash = CryptoJS.HmacSHA256(message, SecurityManager.key);
+                // Base64-encode the hash to get the resulting token.
+                var token = CryptoJS.enc.Base64.stringify(hash);
+                // Include the username and timestamp on the end of the token, so the server can validate.
+                var tokenId = [SecurityManager.username/*, ticks*/].join(':');
+                // Base64-encode the final resulting token.
+                var tokenStr = CryptoJS.enc.Utf8.parse([tokenId, token].join(':'));
+                return CryptoJS.enc.Base64.stringify(tokenStr);
+
+                /*
+                https://codepen.io/jpetitcolas/pen/zxGxKN
+                                // Defining our token parts
+                    var header = {
+                      "alg": "HS256",
+                      "typ": "JWT"
+                    };
+
+                    var data = {
+                      "id": 1337,
+                      "username": "john.doe"
+                    };
+
+                    var secret = "My very confidential secret!!!";
+
+                    function base64url(source) {
+                      // Encode in classical base64
+                      encodedSource = CryptoJS.enc.Base64.stringify(source);
+
+                      // Remove padding equal characters
+                      encodedSource = encodedSource.replace(/=+$/, '');
+
+                      // Replace characters according to base64url specifications
+                      encodedSource = encodedSource.replace(/\+/g, '-');
+                      encodedSource = encodedSource.replace(/\//g, '_');
+
+                      return encodedSource;
+                    }
+
+                    var stringifiedHeader = CryptoJS.enc.Utf8.parse(JSON.stringify(header));
+                    var encodedHeader = base64url(stringifiedHeader);
+                    document.getElementById("header").innerText = encodedHeader;
+
+                    var stringifiedData = CryptoJS.enc.Utf8.parse(JSON.stringify(data));
+                    var encodedData = base64url(stringifiedData);
+                    document.getElementById("payload").innerText = encodedData;
+
+                    var signature = encodedHeader + "." + encodedData;
+                    signature = CryptoJS.HmacSHA256(signature, secret);
+                    signature = base64url(signature);
+
+                    document.getElementById("signature").innerText = signature;
+
+                */
+
+            },
+
+            base64url: function (source) {
+                // Encode in classical base64
+                var encodedSource = CryptoJS.enc.Base64.stringify(source);
+
+                // Remove padding equal characters
+                encodedSource = encodedSource.replace(/=+$/, '');
+
+                // Replace characters according to base64url specifications
+                encodedSource = encodedSource.replace(/\+/g, '-');
+                encodedSource = encodedSource.replace(/\//g, '_');
+
+                return encodedSource;
+            },
+            logout: function () {
+                SecurityManager.ip = null;
+                localStorage.removeItem('SecurityManager.username');
+                SecurityManager.username = null;
+                localStorage.removeItem('SecurityManager.key');
+                SecurityManager.key = null;
+            }, getIp: function () {
+                var result = '';
+                $.ajax({
+                    url: '/ip',
+                    method: 'GET',
+                    async: false,
+                    success: function (ip) {
+                        result = ip;
+                    }
+                });
+                return result;
+            }
+        };
+
+        $.ajax
+    ({
+        type: "GET",
+        url: 'http://localhost:57777/api/EmailTemplate/GetAllTemplates',
+        dataType: 'json',
+        async: false,
+        headers: {
+            "Authorization": SecurityManager.generate('contactsamieid', 'password')
+        },
+        data: '{ "comment" }',
+        success: function () {
+            alert('Thanks for your comment!');
+        },
+        failure: function () {
+            console.log(arguments);
+        }
+    });
+    </script>
+</body>
+</html>

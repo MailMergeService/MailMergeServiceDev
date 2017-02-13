@@ -50,6 +50,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Authentication\Services.Common.Authentication.csproj">
+      <Project>{F156AB74-AA01-4807-BC33-7F420C55FADB}</Project>
+      <Name>Services.Common.Authentication</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Common\Services.Common.csproj">
       <Project>{361fa0ca-f68c-40d7-9ead-90c8a7b4476d}</Project>
       <Name>Services.Common</Name>

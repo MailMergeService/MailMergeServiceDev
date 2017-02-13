@@ -62,6 +62,7 @@ namespace XServices.Common.Authentication
                 return await response.Content.ReadAsStringAsync().ContinueWith(r =>
                 {
                     var data = r.Result;
+                    //todo remove
                     Console.WriteLine(data);
                     var settings = new JsonSerializerSettings
                     {
@@ -74,22 +75,16 @@ namespace XServices.Common.Authentication
                         args.ErrorContext.Handled = true;
                         Console.WriteLine(args);
                     };
-                    return JsonConvert.DeserializeObject<T>(data, settings);
+                    //todo throw instead of default
+                    return string.IsNullOrEmpty(data) ? default(T) : JsonConvert.DeserializeObject<T>(data, settings);
                 });
             }
         }
 
-        public void HandleDeSerializationError(object sender, ErrorEventArgs errorArgs)
-        {
-            //  var currentError = errorArgs.ErrorContext.Error.Message;
-            // errorArgs.ErrorContext.Handled = true;
-        }
-
         private static void SetAuthorizationHeader(HttpClient httpClient)
         {
-            var XjwtAuthorizeHelper = new JWTAuthorizeHelper();
             var user = TokenFactory.AccessToken;
-            var token = XjwtAuthorizeHelper.GenerateTokenString(user.TokenKey, user.TokenId, user.Claims.FirstOrDefault() /*, DateTime.UtcNow.AddDays(1)*/);
+            var token = TokenFactory.GenerateTokenString(user.TokenKey, user.TokenId, user.Claims.FirstOrDefault() /*, DateTime.UtcNow.AddDays(1)*/);
             httpClient.DefaultRequestHeaders.TryAddWithoutValidation("Authorization", token);
         }
 
